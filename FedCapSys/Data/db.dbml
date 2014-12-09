@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PaCS" Class="dbDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.17.3;Initial Catalog=NYCWAY_History;Integrated Security=True" SettingsObjectName="FedCapSys.Properties.Settings" SettingsPropertyName="NYCWAY_HistoryConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="fed.WeCARELocations" Member="WeCARELocations">
+    <Type Name="WeCARELocation">
+      <Column Name="CompanyCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationCode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocationDesc" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LocationStreet" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LocationCity" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="LocationState" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LocationZip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BPSGeneral" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BPSMedical" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Wellness" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DVETesting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SSI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CRT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserLoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HeadQuarter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Borough" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HRASiteCode" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WholeSite" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UserLocation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewCaseLoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="WeCareLoCationsGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="WeCARELocation_WecareLocationsSiteCode" Member="WecareLocationsSiteCodes" ThisKey="LocationCode" OtherKey="LocationCode" Type="WecareLocationsSiteCode" />
+      <Association Name="WeCARELocationsGrouped_WeCARELocation" Member="WeCARELocationsGrouped" ThisKey="WeCareLoCationsGroupId" OtherKey="WeCareLocationsGroupedId" Type="WeCARELocationsGrouped" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="fed.WeCARELocationsGrouped" Member="WeCARELocationsGroupeds">
+    <Type Name="WeCARELocationsGrouped">
+      <Column Name="WeCareLocationsGroupedId" AutoSync="OnInsert" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="WeCARELocationsGrouped_WeCARELocation" Member="WeCARELocations" ThisKey="WeCareLocationsGroupedId" OtherKey="WeCareLoCationsGroupId" Type="WeCARELocation" />
+    </Type>
+  </Table>
+  <Table Name="fed.WecareLocationsSiteCodes" Member="WecareLocationsSiteCodes">
+    <Type Name="WecareLocationsSiteCode">
+      <Column Name="CodeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocationCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SiteCode" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="WeCARELocation_WecareLocationsSiteCode" Member="WeCARELocation" ThisKey="LocationCode" OtherKey="LocationCode" Type="WeCARELocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.cmcaseforms" Member="cmcaseforms">
+    <Type Name="cmcaseform">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FormID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrackNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FrameGeneral" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastSavedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastSavedWhen" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MilestoneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="StatusDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CStatus" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="CStatusDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HideOnFlag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status3Update" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="InitDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SequenceNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DenialCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EpisodeOfCare" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MRN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FormLoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EpisodeNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContractYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BPSNewEngine" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="WellnessPlanInterm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BPSTransfer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CoreNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="cmcaseform_cmformsaudit" Member="cmformsaudits" ThisKey="FormID,TrackNumber" OtherKey="FormID,TrackNumber" Type="cmformsaudit" />
+      <Association Name="cmcaseform_CMData" Member="CMDatas" ThisKey="TrackNumber,FormID" OtherKey="RecordID,FormID" Type="CMData" />
+      <Association Name="cmcaseform_CMData_RouteDate" Member="CMData_RouteDates" Storage="_CMData_BPSRouteDates" ThisKey="FormID,TrackNumber" OtherKey="FormID,RecordID" Type="CMData_RouteDate" />
+      <Association Name="cmcaseform_cmconvertlist" Member="cmconvertlists" ThisKey="TrackNumber" OtherKey="RecordID" Type="cmconvertlist" />
+      <Association Name="HRACase_cmcaseform" Member="HRACase" ThisKey="CaseID" OtherKey="HRACaseID" Type="HRACase" IsForeignKey="true" />
+      <Association Name="CMForm_cmcaseform" Member="CMForm" ThisKey="FormID" OtherKey="ID" Type="CMForm" IsForeignKey="true" />
+      <Association Name="logintable_cmcaseform" Member="logintable" ThisKey="LastSavedBy" OtherKey="UserID" Type="logintable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMForms" Member="CMForms">
+    <Type Name="CMForm">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GroupName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OnSubmit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ActionTemplate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ActionStoredProc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Validation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BackColor" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Instances" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AllowCopy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SeqNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrackAssignment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ArchiveDelay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RoutingControlField" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CustomStoredProc" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NewEngineStartOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="CMForm_cmcaseform" Member="cmcaseforms" ThisKey="ID" OtherKey="FormID" Type="cmcaseform" />
+      <Association Name="CMForm_cmformsaudit" Member="cmformsaudits" ThisKey="ID" OtherKey="FormID" Type="cmformsaudit" />
+      <Association Name="CMForm_CMData" Member="CMDatas" ThisKey="ID" OtherKey="FormID" Type="CMData" />
+      <Association Name="CMForm_CMData_RouteDate" Member="CMData_RouteDates" Storage="_CMData_BPSRouteDates" ThisKey="ID" OtherKey="FormID" Type="CMData_RouteDate" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.cmformsaudit" Member="cmformsaudits">
+    <Type Name="cmformsaudit">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrackNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CaseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FormID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserID" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="SaveTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="RouteID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Seq" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="CMForm_cmformsaudit" Member="CMForm" ThisKey="FormID" OtherKey="ID" Type="CMForm" IsForeignKey="true" />
+      <Association Name="cmcaseform_cmformsaudit" Member="cmcaseform" ThisKey="FormID,TrackNumber" OtherKey="FormID,TrackNumber" Type="cmcaseform" IsForeignKey="true" />
+      <Association Name="logintable_cmformsaudit" Member="logintable" ThisKey="UserID" OtherKey="UserID" Type="logintable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.HRACases" Member="HRACases">
+    <Type Name="HRACase">
+      <Column Name="HRACaseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HRACaseNumber" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Suffix" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="LineNumber" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="CIN" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="CaseSurname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CaseFirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CaseMiddleInit" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="StreetAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ApartmentNumber" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ResidenceBorough" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="ZipCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="FEGSCaseManager" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FutureCaseManager" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EffectiveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HRAServiceBorough" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HRAOfficeNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CaseStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TrackAssignment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CaseInitDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastAction" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PageFlag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HRASpecialProgram" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CurrEpisode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AppHRANumber" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="HRACaseType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HRACaseStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReferralCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ReferralCycle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTROrientation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExternalProvider" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HoursAssigned" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EBTCarfareDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CaseProgress" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubTrackAssignment" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="HRACase_cmcaseform" Member="cmcaseforms" ThisKey="HRACaseID" OtherKey="CaseID" Type="cmcaseform" />
+      <Association Name="HRACase_NYCWAYCodeImport" Member="NYCWAYCodeImports" ThisKey="HRACaseID" OtherKey="CaseID" Type="NYCWAYCodeImport" />
+      <Association Name="HRACase_activity_test" Member="activity_tests" ThisKey="SSN" OtherKey="ssn" Type="activity_test" />
+      <Association Name="HRACase_cmconvertlist" Member="cmconvertlists" ThisKey="HRACaseID" OtherKey="CaseID" Type="cmconvertlist" />
+      <Association Name="HRACase_CMImagingBarcodeInstance" Member="CMImagingBarcodeInstances" ThisKey="HRACaseID" OtherKey="CaseId" Type="CMImagingBarcodeInstance" />
+      <Association Name="HRACase_Activity1" Member="Activity1s" ThisKey="SSN" OtherKey="ssn" Type="Activity1" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMData" Member="CMDatas">
+    <Type Name="CMData">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FormID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FieldName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Association Name="CMForm_CMData" Member="CMForm" ThisKey="FormID" OtherKey="ID" Type="CMForm" IsForeignKey="true" />
+      <Association Name="cmcaseform_CMData" Member="cmcaseform" ThisKey="RecordID,FormID" OtherKey="TrackNumber,FormID" Type="cmcaseform" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="fed.CMData_RouteDates" Member="CMData_RouteDates">
+    <Type Name="CMData_RouteDate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FormID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RouteFieldName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RouteValue" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="DateFieldName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StringDate" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="DateValue" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompletedBy" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="RouteReason" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Association Name="cmcaseform_CMData_RouteDate" Member="cmcaseform" ThisKey="FormID,RecordID" OtherKey="FormID,TrackNumber" Type="cmcaseform" IsForeignKey="true" />
+      <Association Name="CMForm_CMData_RouteDate" Member="CMForm" ThisKey="FormID" OtherKey="ID" Type="CMForm" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.NYCWAYCodeImport" Member="NYCWAYCodeImports">
+    <Type Name="NYCWAYCodeImport">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CaseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActionCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ActionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FADDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateEntered" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProcessID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContractTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiteCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OfficeCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EpisodeNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HRACase_NYCWAYCodeImport" Member="HRACase" ThisKey="CaseID" OtherKey="HRACaseID" Type="HRACase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.activity_test" Member="activity_tests">
+    <Type Name="activity_test">
+      <Column Name="[case number]" Member="case_number" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="suffix" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="line" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="appreg" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="cin" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="[action date]" Member="action_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[action code]" Member="action_code" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="[sequence number]" Member="sequence_number" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[create date]" Member="create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[fad date]" Member="fad_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[program status]" Member="program_status" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[site code]" Member="site_code" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="JBCD" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[completion code]" Member="completion_code" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="[completion date]" Member="completion_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[App Time]" Member="App_Time" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[local office]" Member="local_office" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="[local worker]" Member="local_worker" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[fad worker]" Member="fad_worker" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[wms office]" Member="wms_office" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="AH" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="[wms worker]" Member="wms_worker" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="ssn" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="[User ID]" Member="User_ID" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[es code]" Member="es_code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[wms reason]" Member="wms_reason" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="N" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="HRACase_activity_test" Member="HRACase" ThisKey="ssn" OtherKey="SSN" Type="HRACase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMActions" Member="CMActions">
+    <Type Name="CMAction">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Seq" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="StageID" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NewRoute" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Options" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NextActions" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SendEmail" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AgeReportTrack" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AgeReportCols" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ReasonList" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NextStage" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="temp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.cmconvertlist" Member="cmconvertlists">
+    <Type Name="cmconvertlist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DocType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Batch" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AttachID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DCN" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="HRACase_cmconvertlist" Member="HRACase" ThisKey="CaseID" OtherKey="HRACaseID" Type="HRACase" IsForeignKey="true" />
+      <Association Name="cmcaseform_cmconvertlist" Member="cmcaseform" ThisKey="RecordID" OtherKey="TrackNumber" Type="cmcaseform" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.logintable" Member="logintables">
+    <Type Name="logintable">
+      <Column Name="UserID" Type="System.String" DbType="VarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Department" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EMail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SecurityLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastAccessDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OTLevel" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="JobTitle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ProfileID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Organization" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PasswordExpire" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastPWUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ServiceBorough" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CaseMOrg" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CaseMLoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HomeLocation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Employer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OfflineAccess" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CorporationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="License" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SecurePassword" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
+      <Column Name="SecurePass" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LoginTableID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LicenseExp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BoardExp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EmpId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="nycwayUserId" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="LicExp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="logintable_cmcaseform" Member="cmcaseforms" ThisKey="UserID" OtherKey="LastSavedBy" Type="cmcaseform" />
+      <Association Name="logintable_cmformsaudit" Member="cmformsaudits" ThisKey="UserID" OtherKey="UserID" Type="cmformsaudit" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMImagingBarcodeAudit" Member="CMImagingBarcodeAudits">
+    <Type Name="CMImagingBarcodeAudit">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="StatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StatusDate" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="UserId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="CMImagingBarcodeInstance_CMImagingBarcodeAudit" Member="CMImagingBarcodeInstance" ThisKey="TransactionID" OtherKey="TransactionID" Type="CMImagingBarcodeInstance" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMImagingBarcodeData" Member="CMImagingBarcodeDatas">
+    <Type Name="CMImagingBarcodeData">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="Fieldname" Type="System.String" DbType="VarChar(255)" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="Value" Type="System.String" DbType="VarChar(255)" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="Label" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="CMImagingBarcodeInstance_CMImagingBarcodeData" Member="CMImagingBarcodeInstance" ThisKey="TransactionID" OtherKey="TransactionID" Type="CMImagingBarcodeInstance" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMImagingBarcodeInstance" Member="CMImagingBarcodeInstances">
+    <Type Name="CMImagingBarcodeInstance">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CaseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FormId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CMImagingBarcodeInstance_CMImagingBarcodeAudit" Member="CMImagingBarcodeAudits" ThisKey="TransactionID" OtherKey="TransactionID" Type="CMImagingBarcodeAudit" />
+      <Association Name="CMImagingBarcodeInstance_CMImagingBarcodeData" Member="CMImagingBarcodeDatas" ThisKey="TransactionID" OtherKey="TransactionID" Type="CMImagingBarcodeData" />
+      <Association Name="HRACase_CMImagingBarcodeInstance" Member="HRACase" ThisKey="CaseId" OtherKey="HRACaseID" Type="HRACase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="AllSector.Arborfedcap_RPT.dbo.CMReasons" Member="CMReasons">
+    <Type Name="CMReason">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="PaCS.dbo.Payments_Denied" Member="Payments_Denieds">
+    <Type Name="Payments_Denied">
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Casenum" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="StatusDesc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MilestName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="VendorName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Action_Code" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Action_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="JobStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Voucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PaidDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExpirationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DistDate" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="RejectReason" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RejectDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContractSeqNo" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="InputDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubmissionDate" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MilestCode" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MilestType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DenialDesc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="comments" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MCMilestone" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ServiceArea" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="SSN_no_Dashes" Type="System.String" DbType="VarChar(8000)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CaseN" Type="System.String" DbType="VarChar(10)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Suffix" Type="System.String" DbType="VarChar(2)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Line" Type="System.String" DbType="VarChar(2)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="PaCS.dbo.Milestones_Offline_Subm" Member="Milestones_Offline_Subms">
+    <Type Name="Milestones_Offline_Subm">
+      <Column Name="N" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Vendor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Program" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Case#" Member="Case_" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Suffix" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Line" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SSN" Type="System.String" DbType="Char(9) NOT NULL" CanBeNull="false" />
+      <Column Name="MilestCode" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MilestAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ComplDate" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JobStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MilestDesc" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ManualLoadReason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OfflineSubmDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Activity1" Member="Activity1s">
+    <Type Name="Activity1">
+      <Column Name="[case number]" Member="case_number" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="suffix" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="line" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="appreg" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="cin" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="[action date]" Member="action_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[action code]" Member="action_code" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="[sequence number]" Member="sequence_number" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[create date]" Member="create_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[fad date]" Member="fad_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[program status]" Member="program_status" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[site code]" Member="site_code" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="JBCD" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[completion code]" Member="completion_code" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="[completion date]" Member="completion_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[app time]" Member="app_time" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[local office]" Member="local_office" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="[local worker]" Member="local_worker" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[fad worker]" Member="fad_worker" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="[wms office]" Member="wms_office" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="AH" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="[wms worker]" Member="wms_worker" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="ssn" Type="System.String" DbType="Char(9)" CanBeNull="true" />
+      <Column Name="[es code]" Member="es_code" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[wms reason]" Member="wms_reason" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="N" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="HRACase_Activity1" Member="HRACase" ThisKey="ssn" OtherKey="SSN" Type="HRACase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="PaCS.dbo.Milestones_Paid" Member="Milestones_Paids">
+    <Type Name="Milestones_Paid">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Firstname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Casenum" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="StatusDesc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MilestName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="VendorName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Action_Code" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Action_dt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="JobStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Voucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PaidDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DistDate" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="denialID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RejectReason" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RejectDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InputDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubmissionDate" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MilestCode" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MilestType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DenialDesc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="comments" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MCMilestone" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ServiceArea" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="SSN_no_Dashes" Type="System.String" DbType="VarChar(8000)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CaseN" Type="System.String" DbType="VarChar(10)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Suffix" Type="System.String" DbType="VarChar(2)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Line" Type="System.String" DbType="VarChar(2)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="trackNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="fed.GetCompletedBPS2" Method="GetCompletedBPS2">
+    <Parameter Name="Date_From" Parameter="date_From" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Date_To" Parameter="date_To" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="GetCompletedBPS2Result">
+      <Column Name="Client" Type="System.String" DbType="VarChar(102)" CanBeNull="true" />
+      <Column Name="CaseNumber" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="Milestone" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CompletionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Weekending" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="fed.GetSignedIPE" Method="GetSignedIPE" IsComposable="true">
+    <Parameter Name="Date_From" Parameter="date_From" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Date_To" Parameter="date_To" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="fed.Schedule_FindLocationOfAppointment" Method="Schedule_FindLocationOfAppointment" IsComposable="true">
+    <Parameter Name="ssn" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="caseid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ApptType" Parameter="apptType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ApptDate" Parameter="apptDate" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="fed.GetBPSPaymentDetails" Method="GetBPSPaymentDetails">
+    <Parameter Name="Date_From" Parameter="date_From" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Date_To" Parameter="date_To" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="GetBPSPaymentDetailsResult">
+      <Column Name="Client" Type="System.String" DbType="VarChar(102)" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="CaseNumber" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="Site" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="value5" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Track" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CompletionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CompletedBy" Type="System.String" DbType="VarChar(81)" CanBeNull="true" />
+      <Column Name="ActionCodeStatus" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
+      <Column Name="ActionCodeDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BPSSummaryImaged" Type="System.String" DbType="VarChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="LabImaged" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="value7" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Voucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PaidDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DenialDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DenialReason" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DenialComments" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="BilledOfflineDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BilledOfflineReason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="fed.GetWellnessCompletedDetails" Method="GetWellnessCompletedDetails">
+    <Parameter Name="Date_From" Parameter="date_From" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Date_To" Parameter="date_To" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="GetWellnessCompletedDetailsResult">
+      <Column Name="Client" Type="System.String" DbType="VarChar(102)" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="CaseNumber" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="InitiationCode" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="InitiationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[completion code]" Member="completion_code" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="[completion date]" Member="completion_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[fad date]" Member="fad_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Initiation/Extension Form Saved By]" Member="Initiation_Extension_Form_Saved_By" Type="System.String" DbType="VarChar(81)" CanBeNull="true" />
+      <Column Name="[Initiation/Extension Save Date]" Member="Initiation_Extension_Save_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Initial/ExtensionImaging]" Member="Initial_ExtensionImaging" Type="System.String" DbType="VarChar(33)" CanBeNull="true" />
+      <Column Name="LatestTPWPR" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompletionFormSavedBy" Type="System.String" DbType="VarChar(81)" CanBeNull="true" />
+      <Column Name="CompletionFormSaveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DaysBetweenTPWPRandCompletion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CompletionImaging" Type="System.String" DbType="VarChar(23) NOT NULL" CanBeNull="false" />
+      <Column Name="Outcome" Type="System.String" DbType="VarChar(23)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
